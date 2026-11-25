@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { LockKeyhole } from "lucide-react";
 
 import { useAuthGuard } from "@/hooks/useAuthGuard";
 import { login } from "@/lib/auth";
@@ -65,12 +66,12 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-4 bg-background">
-      <Card className="w-full max-w-md">
+    <main className="flex min-h-screen items-center justify-center px-4 py-10">
+      <Card className="w-full max-w-[420px] border-border/80 shadow-[0_18px_50px_-30px_oklch(0.24_0.025_258_/_0.32)]">
         <CardHeader>
-          <CardTitle className="text-2xl">
-            Login
-          </CardTitle>
+          <div className="mb-3 flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary"><LockKeyhole className="size-5" /></div>
+          <p className="text-xs font-semibold uppercase tracking-[0.13em] text-primary">Organization management</p>
+          <CardTitle className="text-2xl font-semibold tracking-tight">Welcome back</CardTitle>
 
           <CardDescription>
             Enter your credentials to access your account.
@@ -80,7 +81,7 @@ export default function LoginPage() {
         <form onSubmit={handleLogin}>
           <CardContent className="space-y-4">
             {error && (
-              <div className="p-3 text-sm text-red-500 bg-red-50 rounded-md border border-red-200">
+              <div role="alert" className="rounded-md border border-destructive/25 bg-destructive/5 p-3 text-sm text-destructive">
                 {error}
               </div>
             )}
@@ -129,10 +130,10 @@ export default function LoginPage() {
             </Button>
 
             <p className="text-sm text-center text-muted-foreground">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link
                 href={CONFIG.ROUTES.REGISTER}
-                className="text-primary underline"
+              className="font-medium text-primary underline-offset-4 hover:underline"
               >
                 Register
               </Link>
@@ -140,6 +141,6 @@ export default function LoginPage() {
           </CardFooter>
         </form>
       </Card>
-    </div>
+    </main>
   );
 }

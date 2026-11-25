@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { UserRoundPlus } from "lucide-react";
 
 import { useAuthGuard } from "@/hooks/useAuthGuard";
 import { register, logout } from "@/lib/auth";
@@ -81,13 +82,13 @@ export default function RegisterPage() {
   if (isChecking) return null;
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-4 bg-background">
-      <Card className="w-full max-w-md">
+    <main className="flex min-h-screen items-center justify-center px-4 py-10">
+      <Card className="w-full max-w-[420px] border-border/80 shadow-[0_18px_50px_-30px_oklch(0.24_0.025_258_/_0.32)]">
 
         <CardHeader>
-          <CardTitle className="text-2xl">
-            Create Account
-          </CardTitle>
+          <div className="mb-3 flex size-10 items-center justify-center rounded-md bg-primary/10 text-primary"><UserRoundPlus className="size-5" /></div>
+          <p className="text-xs font-semibold uppercase tracking-[0.13em] text-primary">Organization management</p>
+          <CardTitle className="text-2xl font-semibold tracking-tight">Create your account</CardTitle>
 
           <CardDescription>
             Register a new account to get started.
@@ -98,13 +99,13 @@ export default function RegisterPage() {
           <CardContent className="space-y-4">
 
             {error && (
-              <div className="p-3 text-sm text-red-500 bg-red-50 rounded-md border border-red-200">
+              <div role="alert" className="rounded-md border border-destructive/25 bg-destructive/5 p-3 text-sm text-destructive">
                 {error}
               </div>
             )}
 
             {success && (
-              <div className="p-3 text-sm text-green-700 bg-green-50 rounded-md border border-green-200">
+              <div role="status" className="rounded-md border border-green-300 bg-green-50 p-3 text-sm text-green-800">
                 {success}
               </div>
             )}
@@ -179,7 +180,7 @@ export default function RegisterPage() {
 
               <Link
                 href={CONFIG.ROUTES.LOGIN}
-                className="text-primary underline"
+                className="font-medium text-primary underline-offset-4 hover:underline"
               >
                 Login
               </Link>
@@ -189,6 +190,6 @@ export default function RegisterPage() {
         </form>
 
       </Card>
-    </div>
+    </main>
   );
 }
